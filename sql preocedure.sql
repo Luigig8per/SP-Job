@@ -1,19 +1,24 @@
 USE [DGSDATA]
 GO
-/****** Object:  StoredProcedure [dbo].[_BI_Feed_mod_Luis]    Script Date: 10/31/2017 12:36:53 PM ******/
+/****** Object:  StoredProcedure [dbo].[_BI_Feed_to_Apps]    Script Date: 10/31/2017 12:46:24 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 ALTER PROCEDURE [dbo].[_BI_Feed_mod_Luis] 
 	-- Add the parameters for the stored procedure here
 		
+		
 AS
 BEGIN
+
+
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	declare @Day1 datetime
+
+declare @Day1 datetime
 declare @Dat2 datetime 
 declare @Today datetime
 declare @Yesterday datetime
@@ -31,6 +36,9 @@ set @Yesterday = CAST(DATEADD(day,-1, @Day1) AS DATE)
 set @Sport = ''
 set @League = ''
 set @Player = ''
+
+select @Today
+select @Yesterday
 
 DECLARE @Betsidentifier TABLE 
 (
@@ -97,7 +105,44 @@ INSERT INTO @Betsidentifier
 --		 0,	-- @WagerPlaced			Integer,	/*0:Both	1:Phone		2:Internet	*/
 --		 0	-- @Orderby				Integer [0 = Player, else = Ticket]
 
-
+INSERT INTO [G8Apps].[dbo].[_prueba_luis_temp_BI_WL]( 
+[IdWager],
+[IdWagerDetail],
+IdAgent,
+Agent,
+[IdPlayer],
+[Player],
+[IdLineType],
+LineTypeName,
+[LoginName],
+[WinAmount],
+[RiskAmount],
+[Result],
+[Net],
+GamePeriod,
+LEAGUE,
+[CompleteDescription],
+[DetailDescription],
+TEAM,
+[IdGame],
+[IdLeague],
+[Period],
+[Play],
+WagerPlay,
+FAV_DOG,
+[IdSport],
+[PlacedDate],
+[SettledDate],
+[Odds],
+[Points],
+[Score],	
+--[ResultDetail],
+[IP],
+OpeningPoints,
+OpeningMoneyLine,
+ClosingPoints,
+ClosingMoneyLine,
+BeatLine) 
 Select
 [IdWager],
 [IdWagerDetail],
@@ -106,7 +151,7 @@ Agent,
 [IdPlayer],
 [Player],
 [IdLineType],
-Description as LineType,
+Description as LineTypeName,
 [LoginName],
 [WinAmount],
 [RiskAmount],
@@ -372,8 +417,12 @@ TEAM = (
 						
 					where X.[IdWager]>678395	
 )							 
-AS summary
-ORDER BY IdWager ASC
+
+
+
+
+
+select * from [G8Apps].[dbo].[_prueba_luis_temp_BI_WL]
 
 
 
