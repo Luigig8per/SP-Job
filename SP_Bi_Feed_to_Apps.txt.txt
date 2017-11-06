@@ -9,7 +9,6 @@ GO
 ALTER PROCEDURE [dbo].[_BI_Feed_to_Apps] 
 	-- Add the parameters for the stored procedure here
 		
-		
 AS
 BEGIN
 
@@ -29,7 +28,7 @@ declare		@Player Varchar(15)
 set @Day1 = '2017-10-29 16:22:38.430'
 
 
-set @Today= DATEADD(ms, -3, CONVERT(DATETIME,CAST(@day1 AS DATE)) )
+set @Today= DATEADD(ms, -0, CONVERT(DATETIME,CAST(@day1 AS DATE)) )
 set @Yesterday = CAST(DATEADD(day,-1, @Day1) AS DATE) 
 
 
@@ -208,7 +207,7 @@ BeatLine = (
  
 FROM (
 		 
-					SELECT 
+					SELECT DISTINCT
 								
 					X.[IdWager]	,
 					X.[IdWagerDetail],
@@ -415,7 +414,7 @@ TEAM = (
 					LEFT JOIN _web_OpeningLines OL 
 						ON OL.idgame = X.[IdGame] and OL.idLinetype = X.[IdLineType]--(SELECT IdLineTypeIn FROM LINETYPELINKS WHERE IdLineTypeOut = X.[IdLineType] AND IdSport = X.IdSport)--
 						
-					where X.[IdWager]>678395	
+					where (X.[IdWager]>678395) 	and (X.[IdWager] NOT IN (select IdWager from [G8Apps].[dbo].[_prueba_luis_temp_BI_WL] )) 
 )							 
 AS summary
 
@@ -424,6 +423,6 @@ AS summary
 
 ORDER BY IdWager ASC
 
-
+select * from [G8Apps].[dbo].[_prueba_luis_temp_BI_WL]
 
 END
