@@ -40,7 +40,7 @@ sqlStr = "EXECUTE [_BI_Feed] '"&startDate&" 00:00:00','"&endDate&" 23:59:59.997'
    CloseOdds = rs("ClosingMoneyLine")
    BeatLine = rs("BeatLine")
    
-   if IsNull(Net) then
+   if IsNull(Net) then  
     Net = "NULL"
    end if
    
