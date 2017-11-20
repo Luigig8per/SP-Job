@@ -380,7 +380,15 @@ TEAM = (
 						WHEN X.IdSport = 'NHL' 
 					  THEN 
 					   CASE 
-						
+						WHEN Play = 0 THEN CL.VisitorSpecialOdds 
+						WHEN Play = 1 THEN CL.HomeSpecialOdds 
+						WHEN Play = 2 THEN CL.OverOdds 
+						WHEN Play = 3 THEN CL.UnderOdds 
+						WHEN Play = 4 THEN CL.VisitorOdds
+						WHEN Play = 5 THEN CL.HomeOdds 
+						WHEN Play = 6 THEN CL.VisitorSpecialOdds 
+						ELSE - 999999 
+						END 
 					   ELSE CASE
 						WHEN Play = 0 THEN CL.VisitorSpreadOdds 
 						WHEN Play = 1 THEN CL.HomeSpreadOdds 
@@ -392,7 +400,7 @@ TEAM = (
 						   ELSE - 999999 
 						END 
 						END)
-						sdfgsdfg				
+										
 					FROM @Betsidentifier X
 					INNER JOIN PLAYER P 
 						ON P.IdPlayer = X.[IdPlayer]
@@ -419,6 +427,3 @@ ORDER BY IdWager ASC
 select * from [G8Apps].[dbo].[_prueba_luis_temp_BI_WL]
 
 END
-
-
-
