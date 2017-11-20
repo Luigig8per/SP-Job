@@ -1,0 +1,80 @@
+sqlStr = "EXECUTE [_BI_Feed] '"&startDate&" 00:00:00','"&endDate&" 23:59:59.997','','',''"
+  rs.Open sqlStr, c
+ 
+  WHILE NOT rs.EOF 
+   Response.Flush
+   IdWager = rs("IdWager")
+   IdWagerDetail = rs("IdWagerDetail")
+   IdAgent = rs("IdAgent")
+   Agent = rs("Agent")
+   IdPlayer = rs("IdPlayer")
+   Player = rs("Player")
+   IdLineType = rs("IdLineType")
+   LineTypeName = rs("LineType")
+   LoginName = rs("LoginName")
+   WinAmount = rs("WinAmount")
+   RiskAmount = rs("RiskAmount")
+   Result = rs("Result")
+   Net = rs("Neto")
+   GamePeriod = rs("GamePeriod")
+   League = strClean(rs("League"))
+   CompleteDescription = strClean(rs("CompleteDescription"))
+   DetailDescription = strClean(rs("DetailDescription"))
+   Play = rs("Play")
+   Team = rs("TEAM")
+   IdLeague = rs("IdLeague")
+   Period = rs("Period")
+   FavDog = rs("FAV_DOG")
+   WagerPlay = rs("WagerPlay")
+   IdSport = rs("IdSport")
+   SettledDate = rs("SettledDate")
+   PlacedDate = rs("PlacedDate")
+   IdGame = rs("IdGame")
+   Odds = rs("Odds")
+   Points = rs("Points")
+   Score = rs("Score")
+   IP = rs("IP")
+   OpenPoints = rs("OpeningPoints")
+   OpenOdds = rs("OpeningMoneyLine")
+   ClosePoints = rs("ClosingPoints")
+   CloseOdds = rs("ClosingMoneyLine")
+   BeatLine = rs("BeatLine")
+   
+   if IsNull(Net) then
+    Net = "NULL"
+   end if
+   
+   if not IsNull(Team) then
+    Team = strClean(Team)
+   end if 
+   
+   if IsNull(OpenPoints) then
+    OpenPoints = "NULL"
+   end if
+   
+   if IsNull(OpenOdds) then
+    OpenOdds = "NULL"
+   end if
+   
+   if IsNull(ClosePoints) then
+    ClosePoints = "NULL"
+   end if
+   
+   if IsNull(CloseOdds) then
+    CloseOdds = "NULL"
+   end if
+   
+   Response.Write IdWager&" - "
+   'if IdWager > 678395 then
+   'sqlStr = "IF NOT EXISTS (SELECT * FROM BI_WL WHERE IdWager = "&IdWager&") "&_
+   '"BEGIN "&_ 
+   sqlStr = "INSERT INTO [BI_WL] (IdWager, IdWagerDetail, IdAgent, Agent, IdPlayer, Player, IdLineType, LineTypeName, LoginName, WinAmount, "&_
+   "RiskAmount, Result, Net, GamePeriod, League, CompleteDescription, DetailDescription, TEAM, IdGame, IdLeague, Period, FAV_DOG, Play, WagerPlay, IdSport, "&_
+   "SettledDate, PlacedDate, Odds, Points, Score, IP, OpeningPoints, OpeningOdds, ClosingPoints, ClosingOdds, BeatLine) VALUES ("&_
+   IdWager&","&IdWagerDetail&","&IdAgent&",'"&Agent&"',"&IdPlayer&",'"&Player&"',"&IdLineType&",'"&LineTypeName&"','"&LoginName&"',"&WinAmount&","&RiskAmount&",'"&Result&"',"&_
+   Net&",'"&GamePeriod&"','"&League&"','"&CompleteDescription&"','"&DetailDescription&"','"&Team&"',"&IdGame&","&IdLeague&","&Period&",'"&FavDog&"',"&_
+   Play&",'"&WagerPlay&"','"&IdSport&"','"&SettledDate&"','"&PlacedDate&"',"&Odds&","&Points&",'"&Score&"','"&IP&"',"&OpenPoints&","&OpenOdds&","&_
+   ClosePoints&","&CloseOdds&",'"&BeatLine&"') "
+   '"END"
+   'response.write sqlStr
+   db46.Execute (sqlStr)
