@@ -418,6 +418,8 @@ AS summary
 
 ORDER BY IdWager ASC
 
+
+
 select * from [G8Apps].[dbo].[_prueba_luis_temp_BI_WL]
 
 END

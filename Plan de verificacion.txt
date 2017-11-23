@@ -1,0 +1,11 @@
+1. To query differences each day (It can be by settled date....) vs differences on Ezequiel db. 
+
+
+
+SELECT COUNT(*) FROM [G8Apps].[dbo].[_prueba_luis_temp_BI_WL] WHERE SettledDate BETWEEN '2017-11-04' AND '2017-11-05'
+SELECT COUNT(*) FROM [G8Apps].[dbo].[BI_WL] WHERE SettledDate BETWEEN '2017-11-04' AND '2017-11-05'
+
+league_id
+leagueid: enviar ligue id desde la linea. 
+
+primer dia insertado siempre calza???

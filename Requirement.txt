@@ -1,0 +1,13 @@
+Its necessary to automate one job to be executed each day at 3 am. 
+
+The original code its on Operacioninicialezequiel.txt document.
+
+There are some thing to take note:
+
+
+The portion of code of Operacioninicialezequiel.txt is from ASP code by Ezequiel.
+
+The main idea is to automatize this totally in SQL, although if there are better ideas will be accepted.
+
+Before I worked with _prueba_luis_temp_BI_WL.sql, but results were not same from one from Ezequiel. After check the results, we detected that some 
+data from last moment of day were not accepted. So in code from sql, instead of to put 
